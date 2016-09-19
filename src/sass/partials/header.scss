@@ -1,0 +1,121 @@
+//colors
+$havelock_blue: rgb(65, 131, 215);
+$white: rgb(255,255,255);
+$cabin_5: rgba(34, 34, 34, 0.05);
+$white_50: rgba(255,255,255,0.5);
+$havelock_blue_90: rgba(65, 131, 215, 0.9);
+$cabin: #222;
+$grey_eee: #eeeeee;
+
+//@extend-elements
+//original selectors
+//.navbar-default .nav >li >a, .navbar-default .nav >li >a:focus
+%extend_1 {
+    font-size: 16px;
+    font-weight: 400;
+    color: $white;
+}
+
+
+.navbar-default {
+    border-color: $cabin_5;
+    background-color: $white;
+    //Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+    transition: all .35s;
+    background: $havelock_blue;
+    .navbar-header .navbar-brand {
+        font-weight: 100;
+        color: $white;
+        text-transform: uppercase;
+        &:hover {
+            color: $white;
+        }
+        &:focus {
+            color: $white;
+        }
+    }
+    .nav > li {
+        > a {
+            font-size: 16px;
+            font-weight: 400;
+            color: $white;
+            &:focus {
+                font-size: 16px;
+                font-weight: 400;
+                color: $white;
+            }
+            &:hover {
+                color: $white;
+            }
+        }
+        &.active > a {
+            background-color: transparent;
+            &:focus {
+                background-color: transparent;
+                background-color: transparent;
+            }
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+}
+@media(min-width:768px) {
+    .navbar-default {
+        background: $havelock_blue;
+        height: 46px;
+        &.affix {
+            border-color: $cabin_5;
+            background-color: $white_50;
+            &:hover {
+                background: $havelock_blue_90;
+                .navbar-header .navbar-brand {
+                    color: $white;
+                }
+                .nav > li > a {
+                    color: $white;
+                    &:hover {
+                        color: $grey_eee;
+                    }
+                    &:focus {
+                        color: $grey_eee;
+                    }
+                }
+            }
+            .navbar-header .navbar-brand {
+                font-size: 14px;
+                color: $cabin;
+                &:hover {
+                    color: $grey_eee;
+                }
+                &:focus {
+                    color: $grey_eee;
+                }
+            }
+            .nav > li > a {
+                color: $cabin;
+                &:hover {
+                    color: $white;
+                }
+                &:focus:hover {
+                    color: $white;
+                }
+            }
+        }
+        .navbar-header .navbar-brand {
+            color: $white;
+        }
+        .nav > li > a {
+            color: $white;
+            &:focus {
+                color: $white;
+                &:hover {
+                    color: $white;
+                }
+            }
+            &:hover {
+                color: $white;
+            }
+        }
+    }
+}

@@ -1,0 +1,75 @@
+//colors
+$color_havelock_blue_approx: rgb(65, 131, 215);
+$black_12: rgba(0, 0, 0, 0.12);
+$white: white;
+$color_san_marino_approx: #446cb3;
+
+//fonts
+$butler: 'Butler';
+$butler_stencil: 'Butler_Stencil';
+
+
+footer {
+    background: $color_havelock_blue_approx;
+    box-shadow: 0 1px 1px 0 $black_12;
+    width: 100%;
+    text-align: left;
+    font: normal 16px $butler;
+    padding: 25px 50px;
+    .footer-limiter {
+        max-width: 880px;
+        margin: 0 auto;
+    }
+    .footer-right {
+        float: right;
+        margin-top: 6px;
+        max-width: 180px;
+        a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-color: $color_san_marino_approx;
+            border-radius: 2px;
+            font-size: 20px;
+            color: $white;
+            text-align: center;
+            line-height: 35px;
+            margin-left: 3px;
+            text-decoration: none;
+            padding-top: 4px;
+        }
+    }
+    .footer-left p {
+        color: $white;
+        font-size: 14px;
+        margin: 0;
+    }
+    p.footer-links {
+        font-size: 18px;
+        font-weight: bold;
+        color: $white;
+        margin: 0 0 10px;
+        padding: 0;
+        a {
+            display: inline-block;
+            line-height: 1.8;
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}
+@media(max-width: 600px) {
+    footer {
+        .footer-left {
+            text-align: center;
+            p.footer-links {
+                line-height: 1.8;
+            }
+        }
+        .footer-right {
+            text-align: center;
+            float: none;
+            margin: 0 auto 20px;
+        }
+    }
+}
