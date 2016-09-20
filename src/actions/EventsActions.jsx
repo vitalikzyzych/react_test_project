@@ -14,6 +14,13 @@ export function saveAttendee(attendee, uuid, sessions) {
   EventsApi.saveAttendeeData(data)
 }
 
+export function saveUser(user) {
+  return {
+    type: ActionTypes.SAVE_USER,
+    payload: user
+  }
+}
+
 export function load() {
   return {
     type: ActionTypes.FETCH_RESULTS,

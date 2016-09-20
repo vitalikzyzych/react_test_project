@@ -8,6 +8,7 @@ const ActionTypes = keyMirror({
 		FETCH_RESULTS: null,
 		UPDATE_EVENT_UUID: null,
 		UPDATE_SESSIONS_CACHE: null,
+		SAVE_USER: null,
 	});
 const AppTypes = keyMirror(
 	{ SIGNIN: null,

@@ -27,14 +27,6 @@ class AttendeeForm extends Component {
         phoneError: null,
         companyError: null,
       },
-      modal: {
-        open: false,
-        body: "Default"
-      },
-      resultModal: {
-        open: false,
-        body: "Data saved successfully"
-      },
       style: {
         width: '100%',
         marginTop: 10,
@@ -146,53 +138,12 @@ class AttendeeForm extends Component {
 
   login(e) {
     e.preventDefault()
-    if (this.isBlankField()) {
-      let modal = this.state.modal
-      modal.open = true
-      modal.body = "There is a blank field. All fields are required "
-      this.setState({modal: modal})
-      return false
-    }
-    if (this.isErrorField()) {
-      let modal = this.state.modal
-      modal.open = true
-      modal.body = "There is some incorrect value. Please, check your data filled"
-      this.setState({modal: modal})
-      return false
-    }
-    EventsActions.saveAttendee(this.state.attendee, this.props.event_uuid, this.props.sessions_cache)
-    let resultModal = this.state.resultModal
-    resultModal.open = true
-    this.setState({resultModal: resultModal})
-  }
-
-  handleClose(e) {
-    e.preventDefault()
-    let modal = this.state.modal
-    modal.open = false
-    this.setState({modal: modal})
-  }
-
-  goToRoot(e) {
-    e.preventDefault()
-    this.context.router.push('/')
+    //this.props.dispatch(EventsActions.saveAttendee(this.state.attendee, this.props.event_uuid, this.props.sessions_cache))
+    this.props.dispatch(EventsActions.saveUser(this.state.attendee))
+    this.context.router.push('user_details')
   }
 
   render() {
-    const resultModalButton =
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.goToRoot.bind(this)}
-      />
-    const modalButton =
-      <FlatButton
-        label="Submit"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.handleClose.bind(this)}
-      />
     return (
       <div className="attendee_form">
         <div className="attendee_form_header">Attendee Form</div>
@@ -234,24 +185,6 @@ class AttendeeForm extends Component {
             style={this.state.style}
           />
         </form>
-        <Dialog
-          title="Attendee Registration"
-          actions={modalButton}
-          modal={false}
-          open={this.state.modal.open}
-          onRequestClose={this.handleClose}
-        >
-          {this.state.modal.body}
-        </Dialog>
-        <Dialog
-          title="Attendee Registration"
-          actions={resultModalButton}
-          modal={false}
-          open={this.state.resultModal.open}
-          onRequestClose={this.goToRoot.bind(this)}
-        >
-          {this.state.resultModal.body}
-        </Dialog>
       </div>
     )
   }
