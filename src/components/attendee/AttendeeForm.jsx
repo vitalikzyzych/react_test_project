@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import {push} from 'react-router-redux'
-import * as EventsActions  from 'actions/EventsActions'
+import * as EventsActions  from '../../actions/EventsActions'
 
 //TODO: this code needs more clearing!!!
 
@@ -92,7 +92,7 @@ class AttendeeForm extends Component {
     return error
   }
 
-  validateEmail(event) {
+   validateEmail(event) {
     const email = event.target.value
     const emailEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const emailIsValid = emailEx.test(email)
@@ -139,11 +139,14 @@ class AttendeeForm extends Component {
   login(e) {
     e.preventDefault()
     //this.props.dispatch(EventsActions.saveAttendee(this.state.attendee, this.props.event_uuid, this.props.sessions_cache))
+
     this.props.dispatch(EventsActions.saveUser(this.state.attendee))
     this.context.router.push('user_details')
+    console.log(this.props)
   }
 
   render() {
+
     return (
       <div className="attendee_form">
         <div className="attendee_form_header">Attendee Form</div>

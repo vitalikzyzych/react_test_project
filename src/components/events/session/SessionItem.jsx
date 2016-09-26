@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import _ from 'lodash'
 import cn from 'classnames'
 import Divider from 'material-ui/Divider'
-import * as EventsActions  from 'actions/EventsActions'
+import * as EventsActions  from '../../../actions/EventsActions'
 import Checkbox from 'material-ui/Checkbox'
 
 class EventItem extends Component {
@@ -32,6 +32,7 @@ class EventItem extends Component {
     if (this.props.item.status === "Sold Out" || this.props.item.status === "Closed") {
       checkbox_disable = true
     }
+
     return (
       <div className="event_info ">
         <div className="session_checkbox">

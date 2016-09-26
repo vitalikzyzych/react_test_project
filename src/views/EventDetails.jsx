@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import _ from 'lodash'
-import * as EventsActions  from 'actions/EventsActions'
+import * as EventsActions  from '../actions/EventsActions'
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton'
 import EventShortDescription from 'components/events/EventShortDescription'
@@ -15,10 +15,12 @@ class EventDetails extends Component {
 
   componentWillMount() {
     this.setState({currentItem: this._getCurrentEvent()})
+    this.props.dispatch(EventsActions.updateUuid(this.props.params.eventId))
   }
 
   componentDidMount() {
     this.props.dispatch(EventsActions.updateSessionsCache([]))
+
   }
 
   _getCurrentEvent() {
@@ -38,7 +40,10 @@ class EventDetails extends Component {
   }
 
   render() {
+    console.log(this.props)
+
     let sessionList = this.getSessions(this.state.currentItem.sessions)
+
     return (
       <div className="events">
         <Card>
@@ -61,8 +66,13 @@ class EventDetails extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     ...state.events
+
+
+
+
   }
 }
 

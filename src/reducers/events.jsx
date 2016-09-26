@@ -29,7 +29,7 @@ function updateSessionsCache(state, sessions_cache) {
 }
 
 function updateUser(state, user) {
-  console.log(user);
+
   return {
     ...state,
     user
@@ -38,7 +38,7 @@ function updateUser(state, user) {
 
 
 export default function events(state = defaultState, action) {
-  console.log(action);
+  console.log(action)
   switch (action.type) {
     case ActionTypes.FETCH_RESULTS          : return loadEvents(state, action.payload)
     case ActionTypes.UPDATE_EVENT_UUID      : return updateUuid(state, action.payload)

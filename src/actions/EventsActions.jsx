@@ -15,6 +15,7 @@ export function saveAttendee(attendee, uuid, sessions) {
 }
 
 export function saveUser(user) {
+
   return {
     type: ActionTypes.SAVE_USER,
     payload: user
@@ -29,6 +30,7 @@ export function load() {
 }
 
 export function updateUuid(event_uuid) {
+  console.log(event_uuid)
   return {
     type: ActionTypes.UPDATE_EVENT_UUID,
     payload: event_uuid,

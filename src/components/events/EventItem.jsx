@@ -3,12 +3,16 @@ import {Link} from 'react-router'
 import {Card} from 'material-ui/Card'
 import EventShortDescription from 'components/events/EventShortDescription'
 
+
 class EventItem extends Component {
   constructor(props) {
     super(props)
   }
 
+
   render() {
+
+      console.log(this.props.item.uuid)
     return (
       <Card>
         <div className="event_info">
@@ -25,5 +29,6 @@ class EventItem extends Component {
     )
   }
 }
+
 
 export default EventItem
