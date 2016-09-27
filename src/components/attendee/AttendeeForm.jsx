@@ -142,7 +142,7 @@ class AttendeeForm extends Component {
 
     this.props.dispatch(EventsActions.saveUser(this.state.attendee))
     this.context.router.push('user_details')
-    console.log(this.props)
+
   }
 
   render() {

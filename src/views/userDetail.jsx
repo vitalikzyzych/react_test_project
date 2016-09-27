@@ -29,11 +29,11 @@ class Events extends Component {
             companyError: null,
         },
         attendee: {
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            company: '',
+            firstName: this.props.user.firstName,
+            lastName: this.props.user.lastName,
+            email: this.props.user.email,
+            phone: this.props.user.phone,
+            company: this.props.user.company,
         },
         edit:true,
         cancelDisabled:true,
@@ -75,9 +75,9 @@ class Events extends Component {
     }
 
     onEmailChange(event) {
-            console.log(event)
-        console.log(event.target)
-        console.log(event)
+        //     console.log(event)
+        // console.log(event.target)
+        // console.log(event)
 
         let attendee = this.state.attendee;
             attendee.email = event.target.value;
@@ -154,9 +154,20 @@ class Events extends Component {
         //this.props.dispatch(EventsActions.saveAttendee(this.state.attendee, this.props.event_uuid, this.props.sessions_cache))
 
         this.props.dispatch(saveUser(this.state.attendee))
-        console.log(this.props)
-        console.log(this.state.attendee)
+        // console.log(this.props)
+        // console.log(this.state.attendee,1111111111)
+        // console.log(this.props.user);
+
+        this.setState({edit:true,cancelDisabled:true,editDisabled:false,saveDisabled:true})
+        if(true){
+            this.setState({errorModalOpen:true})
+        }
+        else{
+
+        }
     }
+
+    
 
 
 
@@ -245,7 +256,9 @@ class Events extends Component {
               })
           }
       });
-    console.log(this.props);
+    console.log(this.state)
+      console.log(this.props)
+     // console.log(this.props.user)
     return (
 
         <div>
@@ -294,7 +307,7 @@ class Events extends Component {
             />
             <br/>
             <RaisedButton type="submit" label="SAVE"
-                          onClick={onButtonSaveClick.bind(this)}
+                          //onClick={onButtonSaveClick.bind(this)}
                           primary={true}
                           disabled={this.state.saveDisabled}
                           style={styles.chip} />
@@ -349,13 +362,7 @@ function onButtonEditClick() {
     this.setState({edit:false,cancelDisabled:false,editDisabled:true,saveDisabled:false})
 }
 function onButtonSaveClick() {
-    this.setState({edit:true,cancelDisabled:true,editDisabled:false,saveDisabled:true})
-    if(true){
-        this.setState({errorModalOpen:true})
-    }
-    else{
 
-    }
 }
 function onButtonCancelClick() {
     this.setState({edit:true,cancelDisabled:true,editDisabled:false,saveDisabled:true})
