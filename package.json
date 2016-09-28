@@ -24,6 +24,7 @@
     "bootstrap-slider": "^6.1.5",
     "classnames": "^2.2.3",
     "css-loader": "^0.23.0",
+    "elemental": "^0.6.1",
     "events": "^1.1.0",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",

@@ -6,13 +6,13 @@ import Chip from 'material-ui/Chip';
 import {Table, TableBody,  TableHeader, TableHeaderColumn, TableRow, TableRowColumn}
     from 'material-ui/Table';
 import Snackbar from 'material-ui/Snackbar';
-import { darkBlack,} from 'material-ui/styles/colors';
+import styles from '../css/modalStyle.css'
 import DatePicker from 'material-ui/DatePicker';
 import {saveUser} from '../actions/EventsActions';
-import {blue300, indigo900} from 'material-ui/styles/colors';
+
 import _ from 'lodash'
-import {Popover,ButtonToolbar,OverlayTrigger,Button} from 'react-bootstrap';
-import ReactDOM from 'react-dom'
+import {Popover,OverlayTrigger,Modal,ModalBody,ModalHeader,ModalFooter,ModalTitle,ButtonToolbar,Button} from 'react-bootstrap';
+
 
 
 
@@ -40,6 +40,9 @@ class Events extends Component {
         editDisabled:false,
         saveDisabled:true,
         errorModalOpen:false,
+        show:false
+
+
 
 
     }
@@ -152,22 +155,30 @@ class Events extends Component {
 
         e.preventDefault()
         //this.props.dispatch(EventsActions.saveAttendee(this.state.attendee, this.props.event_uuid, this.props.sessions_cache))
-
-        this.props.dispatch(saveUser(this.state.attendee))
-        // console.log(this.props)
-        // console.log(this.state.attendee,1111111111)
-        // console.log(this.props.user);
-
-        this.setState({edit:true,cancelDisabled:true,editDisabled:false,saveDisabled:true})
-        if(true){
-            this.setState({errorModalOpen:true})
+        if(this.state.attendee.firstName===this.props.user.firstName&&
+            this.state.attendee.lastName===this.props.user.lastName&&
+                this.state.attendee.email===this.props.user.email&&
+                this.state.attendee.phone===this.props.user.phone&&
+                this.state.attendee.company===this.props.user.company){
+                //NEED TO ADD MODAL DISPLAYING
         }
         else{
+            this.props.dispatch(saveUser(this.state.attendee))
+
+
+            this.setState({edit:true,cancelDisabled:true,editDisabled:false,saveDisabled:true})
+            if(true){
+                this.setState({errorModalOpen:true})
+            }
+            else{
+
+            }
 
         }
+
     }
 
-    
+
 
 
 
@@ -322,6 +333,7 @@ class Events extends Component {
                               style={styles.chip}
                               onClick={onButtonCancelClick.bind(this)}
                 />
+
             <br/>
             </form>
             <Table height={'inherit'}>
@@ -346,24 +358,45 @@ class Events extends Component {
                       onRequestClose={this.snackbarClose}
             />
 
+                <Button bsStyle="primary" onClick={showModal.bind(this)}>
+                    Launch demo modal
+                </Button>
+                <Modal
+                    show={this.state.show}
+                    //onHide={hideModal.bind(this)}
+                    dialogClassName="custom-modal"
+
+                >
+
+                    <ModalBody>
+                        <h4>Wrapped Text</h4>
+                        <p>ciatis cumque dolorem.</p>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button onClick={hideModal.bind(this)}>Close</Button>
+                    </ModalFooter>
+                </Modal>
 
         </div>
     )
   }
 }
 
-function formValidate(){
 
-}
 
 
 
 function onButtonEditClick() {
     this.setState({edit:false,cancelDisabled:false,editDisabled:true,saveDisabled:false})
 }
-function onButtonSaveClick() {
-
+function showModal() {
+    this.setState({show: true});
 }
+
+function hideModal() {
+    this.setState({show: false});
+}
+
 function onButtonCancelClick() {
     this.setState({edit:true,cancelDisabled:true,editDisabled:false,saveDisabled:true})
 }
