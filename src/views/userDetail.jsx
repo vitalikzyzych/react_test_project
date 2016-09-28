@@ -9,6 +9,7 @@ import Snackbar from 'material-ui/Snackbar';
 import styles from '../css/modalStyle.css'
 import DatePicker from 'material-ui/DatePicker';
 import {saveUser} from '../actions/EventsActions';
+import ErrorSaveModalWindow from '../containers/modalErorSaveWindow'
 
 import _ from 'lodash'
 import {Popover,OverlayTrigger,Modal,ModalBody,ModalHeader,ModalFooter,ModalTitle,ButtonToolbar,Button} from 'react-bootstrap';
@@ -273,6 +274,7 @@ class Events extends Component {
     return (
 
         <div>
+            <ErrorSaveModalWindow UserDetails={this.state.attendee}/>
             <form onSubmit={::this.updateUserForm}>
             <TextField
 
@@ -403,6 +405,7 @@ function onButtonCancelClick() {
 const mapStateToProps = state => {
   return {
     ...state.events,
+      userData:state.events.user
 
   }
 }
