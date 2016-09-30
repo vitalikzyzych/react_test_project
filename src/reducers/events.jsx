@@ -35,15 +35,23 @@ function updateUser(state, user) {
     user
   }
 }
+function modalStatusUpdate(state,modalStatus ){
+  console.log(modalStatus,"reducer1")
+  return{
+      ...state,
+    modalStatus
+  }
+}
 
 
 export default function events(state = defaultState, action) {
-  console.log(action)
+console.log(action,"action")
   switch (action.type) {
     case ActionTypes.FETCH_RESULTS          : return loadEvents(state, action.payload)
     case ActionTypes.UPDATE_EVENT_UUID      : return updateUuid(state, action.payload)
     case ActionTypes.UPDATE_SESSIONS_CACHE  : return updateSessionsCache(state, action.payload)
     case ActionTypes.SAVE_USER              : return updateUser(state, action.payload)
+    case ActionTypes.MODAL_STATUS           : return modalStatusUpdate(state,action.payload)
     default                                 : return state
   }
 }

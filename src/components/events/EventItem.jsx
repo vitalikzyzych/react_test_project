@@ -12,7 +12,7 @@ class EventItem extends Component {
 
   render() {
 
-      console.log(this.props.item.uuid)
+
     return (
       <Card>
         <div className="event_info">

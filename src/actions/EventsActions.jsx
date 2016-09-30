@@ -13,6 +13,12 @@ export function saveAttendee(attendee, uuid, sessions) {
   }
   EventsApi.saveAttendeeData(data)
 }
+export function modalOnSaveStatus(modalStatus){
+  return {
+    type: ActionTypes.MODAL_STATUS,
+    payload: modalStatus
+  }
+}
 
 export function saveUser(user) {
 
@@ -30,7 +36,7 @@ export function load() {
 }
 
 export function updateUuid(event_uuid) {
-  console.log(event_uuid)
+
   return {
     type: ActionTypes.UPDATE_EVENT_UUID,
     payload: event_uuid,

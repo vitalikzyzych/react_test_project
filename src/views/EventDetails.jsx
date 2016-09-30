@@ -40,7 +40,7 @@ class EventDetails extends Component {
   }
 
   render() {
-    console.log(this.props)
+
 
     let sessionList = this.getSessions(this.state.currentItem.sessions)
 
@@ -66,7 +66,7 @@ class EventDetails extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+
   return {
     ...state.events
 

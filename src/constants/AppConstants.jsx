@@ -9,6 +9,7 @@ const ActionTypes = keyMirror({
 		UPDATE_EVENT_UUID: null,
 		UPDATE_SESSIONS_CACHE: null,
 		SAVE_USER: null,
+		MODAL_STATUS:null,
 	});
 const AppTypes = keyMirror(
 	{ SIGNIN: null,
