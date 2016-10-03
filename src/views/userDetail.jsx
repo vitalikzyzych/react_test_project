@@ -4,6 +4,7 @@ import UserTable from '../containers/userTable'
 import UserForm from '../containers/userForm'
 import UploadImage from '../containers/uploadImage'
 
+
 class Events extends Component {
   constructor(props) {
     super(props)
@@ -17,6 +18,8 @@ class Events extends Component {
             <UserForm {...this.props}/>
             <UserTable {...this.props}/>
             <UploadImage {...this.props}/>
+
+
         </div>
     )
   }
