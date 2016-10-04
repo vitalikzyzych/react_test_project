@@ -2,6 +2,9 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
+import FacebookLogin from 'react-facebook-login';
+import * as font from '../../css/facebookbtn.css'
+import styles from 'bootstrap-social/bootstrap-social.css'
 import Dialog from 'material-ui/Dialog'
 import FlatButton from 'material-ui/FlatButton'
 import {push} from 'react-router-redux'
@@ -20,6 +23,7 @@ class AttendeeForm extends Component {
         phone: '',
         company: '',
       },
+      accessToken:'',
       attendeeErrors: {
         firstNameError: null,
         lastNameError: null,
@@ -36,6 +40,10 @@ class AttendeeForm extends Component {
 
   static contextTypes = {
     router: React.PropTypes.object
+  }
+
+  componentDidMount(){
+
   }
 
   onFistNameChange(event) {
@@ -144,8 +152,33 @@ class AttendeeForm extends Component {
     this.context.router.push('user_details')
 
   }
+  onFacebookButtonClick(){
+    console.log(this.state)
+    
+    if(this.state.accessToken !== ''){
+
+      this.props.dispatch(EventsActions.saveUser(this.state.attendee))
+      this.context.router.push('user_details')
+    }
+    else{
+      console.log("FAILED TO LOAD DATA FROM FACEBOOK")
+    }
+
+  }
 
   render() {
+
+    const responseFacebook = (response) => {
+      console.log(response);
+      var attendee = this.state.attendee;
+      attendee.firstName = splitNameData(response.name)[0]
+      attendee.lastName = splitNameData(response.name)[1]
+      attendee.email = response.email
+      this.setState({attendee:attendee})
+      this.setState({accessToken:response.accessToken})
+
+    }
+
 
     return (
       <div className="attendee_form">
@@ -188,11 +221,25 @@ class AttendeeForm extends Component {
             style={this.state.style}
           />
         </form>
+        <div className="lgFacebook">
+          <FacebookLogin
+              appId="1177564148948914"
+              autoLoad={true}
+              fields="name,email,picture"
+              callback={responseFacebook}
+              onClick={::this.onFacebookButtonClick}
+              cssClass="btn-lg btn-facebook"
+          />
+        </div>
       </div>
     )
   }
 }
+function splitNameData(name){
+  var arr = name.split('  ')
+  return arr
 
+}
 const mapStateToProps = state => {
   return {
     ...state.events

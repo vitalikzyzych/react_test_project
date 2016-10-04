@@ -15,10 +15,9 @@ class Events extends Component {
   render() {
           return (
         <div>
-            <UserForm {...this.props}/>
-            <UserTable {...this.props}/>
-            <UploadImage {...this.props}/>
-
+          <UserForm {...this.props}/>
+          <UserTable {...this.props}/>
+          <UploadImage {...this.props}/>
 
         </div>
     )
