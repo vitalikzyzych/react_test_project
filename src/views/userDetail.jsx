@@ -13,6 +13,7 @@ class Events extends Component {
     }
   }
   render() {
+
           return (
         <div>
           <UserForm {...this.props}/>

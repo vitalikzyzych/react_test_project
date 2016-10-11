@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-import FacebookLogin from 'react-facebook-login';
+
+import FacebookLogin from '../../containers/facebookLogin'
 import * as font from '../../css/facebookbtn.css'
 import styles from 'bootstrap-social/bootstrap-social.css'
 import Dialog from 'material-ui/Dialog'
@@ -221,16 +222,7 @@ class AttendeeForm extends Component {
             style={this.state.style}
           />
         </form>
-        <div className="lgFacebook">
-          <FacebookLogin
-              appId="1177564148948914"
-              autoLoad={true}
-              fields="name,email,picture"
-              callback={responseFacebook}
-              onClick={::this.onFacebookButtonClick}
-              cssClass="btn-lg btn-facebook"
-          />
-        </div>
+        <FacebookLogin/>
       </div>
     )
   }
