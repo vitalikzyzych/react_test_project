@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
-
+import Auth0Lock from 'auth0-lock';
 import FacebookLogin from '../../containers/facebookLogin'
 import * as font from '../../css/facebookbtn.css'
 import styles from 'bootstrap-social/bootstrap-social.css'
@@ -12,6 +12,9 @@ import {push} from 'react-router-redux'
 import * as EventsActions  from '../../actions/EventsActions'
 
 //TODO: this code needs more clearing!!!
+const CID = "XdhNs0TItnFeMyWm52PCRvthEIGxYTuY";
+const DOMAIN = "bbilanych.eu.auth0.com";
+const LOCK = new Auth0Lock(CID, DOMAIN);
 
 class AttendeeForm extends Component {
   constructor(props) {
@@ -146,6 +149,7 @@ class AttendeeForm extends Component {
   }
 
   login(e) {
+
     e.preventDefault()
     //this.props.dispatch(EventsActions.saveAttendee(this.state.attendee, this.props.event_uuid, this.props.sessions_cache))
 
@@ -155,7 +159,7 @@ class AttendeeForm extends Component {
   }
   onFacebookButtonClick(){
     console.log(this.state)
-    
+
     if(this.state.accessToken !== ''){
 
       this.props.dispatch(EventsActions.saveUser(this.state.attendee))
@@ -164,6 +168,25 @@ class AttendeeForm extends Component {
     else{
       console.log("FAILED TO LOAD DATA FROM FACEBOOK")
     }
+
+  }
+  onAuthButtonClick(){
+
+
+      LOCK.show(function(err, profile, token) {
+          if (err) {
+              // Error callback
+              console.error("Something went wrong: ", err);
+          } else {
+              LOCK.getProfile(oken, function(error, profile) {
+                  if (!error) {
+                      alert("hello " + profile.name);
+                  }
+              });
+              localStorage.setItem('userToken', token);
+              localStorage.setItem('userProfile', JSON.stringify(profile));
+          }
+      });
 
   }
 
@@ -223,6 +246,12 @@ class AttendeeForm extends Component {
           />
         </form>
         <FacebookLogin/>
+        <RaisedButton
+            onClick={this.onAuthButtonClick}
+            label="Auth_0"
+            primary={true}
+            style={this.state.style}
+        />
       </div>
     )
   }

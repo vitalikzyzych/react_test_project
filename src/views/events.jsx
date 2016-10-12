@@ -3,16 +3,27 @@ import {connect} from 'react-redux'
 import _ from 'lodash'
 import * as EventsActions  from 'actions/EventsActions'
 import EventItem from 'components/events/EventItem'
+import AuthService from '../utils/AuthService'
 
 class Events extends Component {
   constructor(props) {
     super(props)
   }
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
 
   componentWillMount() {
     this.props.dispatch(EventsActions.load())
+    if(this.getToken()!== null){
+      console.log(this.getToken())
+      this.context.router.push('home')
+    }
   }
-
+  getToken(){
+    // Retrieves the user token from localStorage
+    return localStorage.getItem('id_token')
+  }
   _getEvents(events) {
     var eventsList = _.map(events, (item, i) => {
       if (item.status !== "Draft") {
@@ -30,7 +41,9 @@ class Events extends Component {
   render() {
     var eventsList = this._getEvents(this.props.events)
     return (
+
       <div className="events">
+        <AuthService/>
         {eventsList}
       </div>
     )
