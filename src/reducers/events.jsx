@@ -14,6 +14,21 @@ function loadEvents(state, events) {
   }
 }
 
+function getToken(state,token){
+
+  return {
+    ...state,
+    token
+  }
+}
+
+function getProfile(state,profile) {
+  return{
+      ...state,
+    profile
+  }
+}
+
 function updateUuid(state, event_uuid) {
   return {
     ...state,
@@ -36,7 +51,7 @@ function updateUser(state, user) {
   }
 }
 function modalStatusUpdate(state,modalStatus ){
-  console.log(modalStatus,"reducer1")
+
   return{
       ...state,
     modalStatus
@@ -44,14 +59,17 @@ function modalStatusUpdate(state,modalStatus ){
 }
 
 
+
 export default function events(state = defaultState, action) {
-console.log(action,"action")
+
   switch (action.type) {
     case ActionTypes.FETCH_RESULTS          : return loadEvents(state, action.payload)
     case ActionTypes.UPDATE_EVENT_UUID      : return updateUuid(state, action.payload)
     case ActionTypes.UPDATE_SESSIONS_CACHE  : return updateSessionsCache(state, action.payload)
     case ActionTypes.SAVE_USER              : return updateUser(state, action.payload)
     case ActionTypes.MODAL_STATUS           : return modalStatusUpdate(state,action.payload)
+    case ActionTypes.TOKEN                  : return getToken(state,action.payload)
+    case ActionTypes.PROFILE_FROM_AUTH0     : return getProfile(state,action.payload)
     default                                 : return state
   }
 }

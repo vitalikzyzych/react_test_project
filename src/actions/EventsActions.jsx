@@ -42,6 +42,20 @@ export function updateUuid(event_uuid) {
     payload: event_uuid,
   }
 }
+export function setToken(token){
+
+  return {
+    type: ActionTypes.TOKEN,
+    payload: token,
+  }
+
+}
+export function setProfile(profile){
+  return {
+    type: ActionTypes.PROFILE_FROM_AUTH0,
+    payload: profile,
+  }
+}
 export function updateSessionsCache(sessions_cache) {
   return {
     type: ActionTypes.UPDATE_SESSIONS_CACHE,

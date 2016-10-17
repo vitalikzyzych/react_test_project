@@ -10,6 +10,8 @@ const ActionTypes = keyMirror({
 		UPDATE_SESSIONS_CACHE: null,
 		SAVE_USER: null,
 		MODAL_STATUS:null,
+		TOKEN:null,
+		PROFILE_FROM_AUTH0:null,
 	});
 const AppTypes = keyMirror(
 	{ SIGNIN: null,

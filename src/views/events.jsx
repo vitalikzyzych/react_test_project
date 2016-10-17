@@ -8,15 +8,18 @@ import AuthService from '../utils/AuthService'
 class Events extends Component {
   constructor(props) {
     super(props)
+    this.state={
+      token:localStorage.getItem('id_token'),
+    }
   }
   static contextTypes = {
-    router: React.PropTypes.object
+    router: React.PropTypes.object,
+
   }
 
   componentWillMount() {
     this.props.dispatch(EventsActions.load())
     if(this.getToken()!== null){
-      console.log(this.getToken())
       this.context.router.push('home')
     }
   }
@@ -39,6 +42,7 @@ class Events extends Component {
   }
 
   render() {
+
     var eventsList = this._getEvents(this.props.events)
     return (
 
